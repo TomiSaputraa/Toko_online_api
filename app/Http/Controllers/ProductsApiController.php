@@ -10,7 +10,10 @@ class ProductsApiController extends Controller
     public function index()
     {
         // making nested api
+        // "SELECT * FROM `products` WHERE 1"
         $products = Product::all();
+
+        // this like "SELECT `id`, `name` FROM `products` WHERE 1" In SQL
         $username = Product::select('products.name as name', 'products.id as id')->get();
         return response()->json([
             'message' => '200 OK',
