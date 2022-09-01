@@ -14,8 +14,4 @@ class Product extends Model
     protected $guarded = [
         'id'
     ];
-
-    public $timestamps = false;
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'updated_date';
 }
