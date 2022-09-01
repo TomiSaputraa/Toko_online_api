@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class ProductsApiController extends Controller
@@ -16,7 +17,8 @@ class ProductsApiController extends Controller
         // this like "SELECT `id`, `name` FROM `products` WHERE 1" In SQL
         $username = Product::select('products.name as name', 'products.id as id')->get();
         return response()->json([
-            'message' => '200 OK',
+            'message' => 'Succes get data',
+            "status" => 200,
             'product' => $products,
             "username" => $username,
 
@@ -32,7 +34,10 @@ class ProductsApiController extends Controller
     public function store(Request $request)
     {
         $product = Product::create($request->all());
-        return response()->json(['message' => 'insert data has been inserted success', 'data' => $product]);
+        return response()->json([
+            'headers' => [],
+            'message' => 'insert data has been inserted success', 'data' => $product,
+        ]);
     }
 
     public function update(Request $request, $id)
